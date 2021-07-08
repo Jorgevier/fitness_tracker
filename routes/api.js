@@ -1,8 +1,8 @@
 const router = require ("express").Router();
-const  Workout = require("../workout");
+const  Workout = require("../models/workout");
 
-router.post("/api/workout", ({ body }, res) => {
-    Workout.create({})
+router.post("/api/workouts", ({ body }, res) => {
+    Workout.create({body})
       .then(dbWorkout => {
         res.json(dbWorkout);
       })
@@ -12,6 +12,11 @@ router.post("/api/workout", ({ body }, res) => {
   });
 
 //get w/o by id
+
+router.get("/api/workouts/:id", (req, res) =>{
+  console.log(req)
+Workout.findById({ _id: req.params.id})
+})
 
 //look up .aggregate from mongoose 
 
