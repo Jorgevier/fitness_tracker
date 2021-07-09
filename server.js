@@ -9,7 +9,7 @@ const app = express();
 
 app.use(logger("dev"));
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname,"public")));
 
@@ -24,8 +24,8 @@ app.use(express.static(path.join(__dirname,"public")));
 
 
 
-app.use(require("./routes/api.js"))
-app.use(require("./routes/html_routes.js"))
+app.use(require("./routes/api"))
+app.use(require("./routes/html_routes"))
 
 db.once('open', () => {
 app.listen(PORT, () =>{
